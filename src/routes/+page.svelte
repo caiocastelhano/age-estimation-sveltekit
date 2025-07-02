@@ -1,21 +1,24 @@
 <script>
-  // Importa o estado da página e a função para navegação programática
+  // Permite acessar informações da URL atual
   import { page } from '$app/stores';
+  // Atualiza a URL dinamicamente, sem recarregar a página
   import { goto } from '$app/navigation';
 
-  // Estado do input e debounce
+  // Nome digitado pelo usuário
+  // Versão estabilizada do nome, que só muda 1 segundo depois que o usuário para de digitar
+  // ID do setTimeout, usado para controlar o debounce manualmente
   let name = "";
   let debouncedName = "";
   let debounceTimeout;
 
-  // Dados vindos do load()
+  // Recebe os dados retornados pela função load()
   export let data;
   $: ageData = data.ageData;
 
-  // Flag para inicializar o valor do input com a URL (só na 1ª vez)
+  // Flag que garante que o valor do input será sincronizado com a URL apenas na primeira renderização
   let initialized = false;
 
-  // Ao carregar a página, se houver ?name=, preenche o input com ele
+  // Ao carregar a página, se houver ?name= na URL, preenche o input com esse valor
   $: {
     if (!initialized) {
       const searchName = $page.url.searchParams.get("name");
@@ -27,7 +30,7 @@
     }
   }
 
-  // Aplica debounce de 1000ms antes de atualizar a querystring
+  // Quando "name" muda: cancela o timer anterior, inicia um novo e, após 1s sem digitar, atualiza o debouncedName
   $: {
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
@@ -35,28 +38,31 @@
     }, 1000);
   }
 
-  // Atualiza a URL com ?name=... sempre que o debouncedName mudar
+  // Sincroniza a URL com o valor do input
   $: {
     const currentSearch = $page.url.searchParams.get("name");
 
     if (debouncedName && currentSearch !== debouncedName) {
-      // Se tem nome → atualiza a querystring normalmente
+      // Se tem nome, atualiza a querystring normalmente
       const newUrl = `/?name=${encodeURIComponent(debouncedName)}`;
       goto(newUrl, { replaceState: true });
     }
 
     if (debouncedName === "" && currentSearch) {
-      // Se apagou tudo → remove ?name da URL
+      // Se o campo foi apagado, remove ?name da URL
       goto("/", { replaceState: true });
     }
   }
 </script>
 
 <main>
+  <!-- Título da página -->
   <h1>Descubra a idade estimada a partir de um nome</h1>
 
+  <!-- Rótulo do campo de input -->
   <label for="nameInput">Digite um nome:</label>
 
+  <!-- Campo de input para o usuário digitar o nome, com sugestão visível -->
   <input
     id="nameInput"
     type="text"
@@ -64,6 +70,7 @@
     placeholder="Ex: Beatriz"
   />
 
+  <!-- Se o campo não estiver vazio e houver resposta da API (ageData), exibe os dados retornados pela requisição -->
   {#if name.trim() !== "" && ageData}
     <div class="result">
       <p>Nome: {ageData.name}</p>
@@ -74,7 +81,7 @@
 </main>
 
 <style>
-  /* Import da fonte Montserrat do Google Fonts */
+  /* Importa a fonte Montserrat do Google Fonts */
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
   /* Estilo global do corpo da página */
@@ -112,7 +119,7 @@
     color: #333;
   }
 
-  /* Estilo do label e do campo de input */
+  /* Estilo do label */
   label {
     font-weight: bold;
     display: block;
@@ -120,6 +127,7 @@
     color: #444;
   }
 
+  /* Campo de input */
   input {
     width: 100%;
     padding: 0.7rem;
@@ -130,7 +138,7 @@
     box-sizing: border-box;
   }
 
-  /* Estilo ao focar no input */
+  /* Estilo quando o input está em ativo */
   input:focus {
     border-color: #135329;
     outline: none;
@@ -147,6 +155,7 @@
     box-sizing: border-box;
   }
 
+  /* Estilo dos parágrafos dentro do bloco de resultado */
   .result p {
     margin: 0.3rem 0;
   }
