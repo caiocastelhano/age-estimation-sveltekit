@@ -1,4 +1,4 @@
-# Previsão de Idade por Nome
+# Svelte Age Predictor
 
 Aplicação frontend desenvolvida com **SvelteKit**, que utiliza a API pública [agify.io](https://agify.io) para estimar a idade média de uma pessoa com base no nome digitado.
 
