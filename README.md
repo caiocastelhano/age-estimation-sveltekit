@@ -4,10 +4,6 @@ Front-end application built with **SvelteKit** that uses the public API [agify.i
 
 This project was originally created as part of a technical challenge for a hiring process. Although I didn’t advance in the process, I decided to keep it in my portfolio as it was a great opportunity to learn SvelteKit and API consumption.
 
-## 🌐 Visit
-
-🌐 (Insert deployed app link here, if available)
-
 ## 🧠 About the Project
 
 The app queries the [agify.io](https://agify.io) API to return the average estimated age and record count for a given name. It features a reactive input field with a debounce mechanism and URL synchronization, offering a smooth and simple user experience.
@@ -51,3 +47,8 @@ The layout adapts to different screen sizes, ensuring usability on **desktop, ta
 - Dark palette with green highlights  
 - Centered layout  
 - Montserrat font (Google Fonts)
+
+## 👨‍💻 Developer
+
+Developed by [Caio Castelhano](https://www.caiocastelhano.com.br/) – front-end developer based in Brazil.  
+For freelance inquiries, collaborations, or feedback, feel free to get in touch.
