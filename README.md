@@ -1,67 +1,53 @@
-# Svelte Age Predictor
+# 🔮 Svelte Age Predictor
 
-Aplicação frontend desenvolvida com **SvelteKit**, que utiliza a API pública [agify.io](https://agify.io) para estimar a idade média de uma pessoa com base no nome digitado.
+Front-end application built with **SvelteKit** that uses the public API [agify.io](https://agify.io) to estimate a person’s average age based on the entered name.
 
-Este projeto foi originalmente criado como parte de um desafio técnico para processo seletivo. Mesmo não tendo avançado no processo, decidi mantê-lo no portfólio por ter sido uma ótima oportunidade de aprendizado com SvelteKit e consumo de APIs.
+This project was originally created as part of a technical challenge for a hiring process. Although I didn’t advance in the process, I decided to keep it in my portfolio as it was a great opportunity to learn SvelteKit and API consumption.
 
----
+## 🌐 Visit
 
-## Funcionalidades
+🌐 (Insert deployed app link here, if available)
 
-- Consulta à API [agify.io](https://agify.io)
-- Campo de input reativo com debounce de 1 segundo
-- Sincronização da URL com a busca (`?name=...`)
-- Exibição da idade média estimada e base de registros
-- Layout responsivo com CSS puro (sem frameworks)
-- Estilização com foco em simplicidade e performance
+## 🧠 About the Project
 
----
+The app queries the [agify.io](https://agify.io) API to return the average estimated age and record count for a given name. It features a reactive input field with a debounce mechanism and URL synchronization, offering a smooth and simple user experience.
 
-## Tecnologias utilizadas
+## 🌐 Features
 
-- [SvelteKit](https://kit.svelte.dev/)
-- CSS puro com escopo local no `+page.svelte`
-- API REST [agify.io](https://agify.io)
+- Query to the [agify.io](https://agify.io) API  
+- Reactive input field with 1-second debounce  
+- URL synchronization with the search (`?name=...`)  
+- Displays the estimated average age and record count  
+- Responsive layout with pure CSS (no frameworks)  
+- Styling focused on simplicity and performance
 
----
+## 🛠️ Technologies Used
 
-## Etapas do desenvolvimento
+- [SvelteKit](https://kit.svelte.dev/)  
+- Pure CSS with local scope in `+page.svelte`  
+- REST API [agify.io](https://agify.io)  
 
-### 01 – Setup do Projeto
-- Criação do projeto com SvelteKit
-- Estrutura inicial e roteamento automático da página principal
+## 📱 Responsiveness
 
-### 02 – Entrada de Dados e Sincronização com a URL
-- Campo de input criado com `bind:value`
-- Sincronização da URL com `goto()` sempre que o nome muda
-- Se a página for carregada com `?name=`, o input é preenchido automaticamente
+The layout adapts to different screen sizes, ensuring usability on **desktop, tablet, and mobile**.
 
-### 03 – Integração com a API
-- Implementação do `load()` para buscar dados da agify.io
-- A resposta da API (`name`, `age`, `count`) é exibida na interface
-- Tratamento do estado inicial e limpeza da URL se o campo for apagado
+## 📅 Development Stages
 
-### 04 – Estilização com CSS puro
-- Paleta escura com toques de verde
-- Layout centralizado
-- Fonte Montserrat (Google Fonts)
+### 01 – Project Setup
+- Created the project with SvelteKit  
+- Initial structure and automatic routing for the main page
 
----
+### 02 – Data Entry and URL Sync
+- Input field created with `bind:value`  
+- URL synchronization using `goto()` whenever the name changes  
+- If the page loads with `?name=`, the input is automatically populated
 
-## Como rodar o projeto localmente
+### 03 – API Integration
+- Implemented `load()` to fetch data from agify.io  
+- API response (`name`, `age`, `count`) displayed in the interface  
+- Handles initial state and clears the URL if the field is emptied
 
-```bash
-# Instalar dependências
-npm install
-
-# Iniciar o servidor de desenvolvimento
-npm run dev
-```
-
-Acesse http://localhost:5173 (ou a porta indicada no terminal).
-
----
-
-## Desenvolvido por
-
-[Caio Castelhano](https://www.caiocastelhano.com.br/)
+### 04 – Styling with Pure CSS
+- Dark palette with green highlights  
+- Centered layout  
+- Montserrat font (Google Fonts)
